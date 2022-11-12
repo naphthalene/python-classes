@@ -97,6 +97,11 @@ We are using `lsp-pyright`. Here is the snippet you need in your
 (setq lsp-keymap-prefix "s-;")
 ```
 
+#### Using VSCode Instead
+
+VS Code has great support for Python, and should be considered for use
+instead of emacs at this point.
+
 #### Running Tests
 
 ```
@@ -214,3 +219,14 @@ git pull origin main
 #   gco main
 #   ggpush
 ```
+
+## Week 3 - Diving into Functions
+
+The purpose of this week is to get a better understanding of functions
+in Python. While you have already seen many examples of functions, there
+are some specifics that should be considered.
+
+### Function Inputs and Outputs
+
+As you may have already seen, functions in Python (and many other
+languages)
