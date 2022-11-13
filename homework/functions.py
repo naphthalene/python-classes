@@ -60,7 +60,7 @@ class RomanNumeral():
         """
         if not RomanNumeral.is_valid(numeral):
             raise ValueError(f'[{self.numeral}] is not valid!')
-        self.numeral = numeral
+        self.numeral = numeral.upper()
 
     @staticmethod
     def is_valid(numeral: str) -> bool:
@@ -70,14 +70,25 @@ class RomanNumeral():
         This is not trivial: https://projecteuler.net/about=roman_numerals
 
           Legal characters: ['IVXLCDM']
-          Numerals must be arranged in descending order of size.
-          M, C, and X cannot be equalled or exceeded by smaller denominations.
-          D, L, and V can each only appear once.
+          (1) Numerals must be arranged in descending order of size.
+          (2) M, C, and X cannot be equalled or exceeded by smaller
+              denominations.
+          (3) D, L, and V can each only appear once.
 
-        e.g. RomanNumeral.is_valid()
+        A smaller number in front of a larger number means subtraction,
+        all else means addition. For example, IV means 4, VI means 6.
+
+        e.g.:
+          RomanNumeral.is_valid('ABC')  # -> False - illegal chars
+          RomanNumeral.is_valid('VM')   # -> False - violates rule 1
+          RomanNumeral.is_valid('IXI')  # -> False - violates rule 2
+          RomanNumeral.is_valid('DDX')  # -> False - violates rule 3
+          RomanNumeral.is_valid('XIX')  # -> True - 19
+          RomanNumeral.is_valid('MCMVII')  # -> True - 1907
 
         Note:
-          This is a static method - it doesn't have access to {self}
+          This is a static method - it doesn't have access to {self},
+          just {numeral}
 
         Args:
           numeral: the roman numeral as a string to test
@@ -93,14 +104,14 @@ class RomanNumeral():
     @classmethod
     def from_str(cls, numeral: str) -> 'RomanNumeral':
         """
-        Create a RomanNumeral class from a string representation.
+        Create a RomanNumeral object from a string representation.
         """
         return cls(numeral=numeral)
 
     @classmethod
     def from_int(cls, number: int) -> 'RomanNumeral':
         """
-        Create a RomanNumeral class from a given number.
+        Create a RomanNumeral object from a given number.
         """
         # numeral = ... number ...
         # return cls(numeral=numeral)
@@ -111,7 +122,7 @@ class RomanNumeral():
         This is a special function that Python calls when you call
         str() on an object of this class.
         """
-        return self.numeral.upper()
+        return self.numeral
 
     def __bool__(self) -> bool:
         """
@@ -133,7 +144,7 @@ class RomanNumeral():
 
         e.g. (self != other)
         """
-        return int(self) == int(other)
+        return int(self) != int(other)
 
     def __le__(self, other: 'RomanNumeral') -> bool:
         """
