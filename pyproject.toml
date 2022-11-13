@@ -11,7 +11,7 @@ authors = [
 ]
 
 packages = [
-    { include = "lessons" },
+    { include = "homework" },
 ]
 
 [tool.poetry.dependencies]
