@@ -130,10 +130,10 @@ values it has, you can use the interactive Python interpreter to run:
 help(sum)  # Displays:
 
 # Help on built-in function sum in module builtins:
-# 
+#
 # sum(iterable, /, start=0)
 #     Return the sum of a 'start' value (default: 0) plus an iterable of numbers
-#     
+#
 #     When the iterable is empty, return the start value.
 #     This function is intended specifically for use with numeric values and may
 #     reject non-numeric types.
@@ -289,8 +289,8 @@ class FunctionContainer:
         """
         Create an instance of this class.
 
-        The *, in the arguments list means `value` 
-        must be passed as a keyword argument, and 
+        The *, in the arguments list means `value`
+        must be passed as a keyword argument, and
         not as a positional argument.
         """
         self.value = value
@@ -298,6 +298,8 @@ class FunctionContainer:
 
 ```python
 container = FunctionContainer(value=123)
+container.value         # -> 123
+container.value = 456   # update the value
 ```
 
 ---
