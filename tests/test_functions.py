@@ -23,8 +23,11 @@ def test_reverse_string():
     assert reverse_string('abcdef') == 'fedcba'
     assert reverse_string('spaces & things') == 'sgniht & secaps'
 
-
 # --------------------------------------------------
+@pytest.fixture
+def roman_numeral_1901() -> RomanNumeral:
+    return RomanNumeral.from_str('MCMI')
+
 @pytest.fixture
 def roman_numeral_2022() -> RomanNumeral:
     return RomanNumeral.from_str('MMXXII')
@@ -46,6 +49,9 @@ def roman_numeral_19_int() -> RomanNumeral:
     return RomanNumeral.from_int(19)
 
 # --------------------------------------------------
+def test_roman_numeral_1901(roman_numeral_1901):
+    assert int(roman_numeral_1901) == 1901
+
 def test_roman_numeral_2022(roman_numeral_2022):
     assert int(roman_numeral_2022) == 2022
     assert str(roman_numeral_2022) == 'MMXXII'
