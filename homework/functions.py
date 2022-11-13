@@ -20,13 +20,18 @@ def reverse_string(input_string: str) -> str:
     """
     Problem 2 - Reversing a string
     ---------
-    Given an input string, return the string in reverse.
+    Given an input string, return the string in reverse. There are a
+    number of ways to implement this!
 
     e.g. reverse_string("123abc") == "cba321"
 
     Hint:
       strings are "iterable", and can be thought of as lists of
       characters:  "abc" == ['a', 'b', 'c']
+      help(slice)
+
+    Hint:
+      help(list.pop)
     """
     raise NotImplementedError()
 
@@ -61,6 +66,13 @@ class RomanNumeral():
     def is_valid(numeral: str) -> bool:
         """
         Return True if and only if given value is a valid Roman Numeral.
+
+        This is not trivial: https://projecteuler.net/about=roman_numerals
+
+          Legal characters: ['IVXLCDM']
+          Numerals must be arranged in descending order of size.
+          M, C, and X cannot be equalled or exceeded by smaller denominations.
+          D, L, and V can each only appear once.
 
         e.g. RomanNumeral.is_valid()
 
