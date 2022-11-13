@@ -47,7 +47,7 @@ def roman_numeral_19_int() -> RomanNumeral:
 
 # --------------------------------------------------
 def test_roman_numeral_2022(roman_numeral_2022):
-    assert roman_numeral_2022.as_int() == 2022
+    assert int(roman_numeral_2022) == 2022
     assert str(roman_numeral_2022) == 'MMXXII'
 
 def test_roman_numeral_mixed_case(roman_numeral_mixed_case):
@@ -65,5 +65,5 @@ def test_roman_numeral_comparison(roman_numeral_19_str, roman_numeral_2022):
     assert roman_numeral_19_str < roman_numeral_2022
 
 def test_roman_numeral_math(roman_numeral_19_str, roman_numeral_2022):
-    assert (roman_numeral_19_str + roman_numeral_2022).as_int() == 2041
-    assert (roman_numeral_19_str * roman_numeral_2022).as_int() == 38418
+    assert int(roman_numeral_19_str + roman_numeral_2022) == 2041
+    assert int(roman_numeral_19_str * roman_numeral_2022) == 38418

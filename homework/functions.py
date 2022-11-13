@@ -72,7 +72,7 @@ class RomanNumeral():
         """
         raise NotImplementedError()
 
-    def as_int(self) -> int:
+    def __int__(self) -> int:
         """
         Return the equivalent value in self.numeral as a number.
         """
@@ -113,7 +113,7 @@ class RomanNumeral():
 
         e.g. (self == other)
         """
-        return self.as_int() == other.as_int()
+        return int(self) == int(other)
 
     def __ne__(self, other: 'RomanNumeral') -> bool:
         """
@@ -121,7 +121,7 @@ class RomanNumeral():
 
         e.g. (self != other)
         """
-        return self.as_int() == other.as_int()
+        return int(self) == int(other)
 
     def __le__(self, other: 'RomanNumeral') -> bool:
         """
@@ -159,10 +159,10 @@ class RomanNumeral():
         """
         Used to add two numerals together.
         """
-        return RomanNumeral.from_int(self.as_int() + other.as_int())
+        return RomanNumeral.from_int(int(self) + int(other))
 
     def __mul__(self, other: 'RomanNumeral') -> 'RomanNumeral':
         """
         Used to multiply two numerals together.
         """
-        return RomanNumeral.from_int(self.as_int() * other.as_int())
+        return RomanNumeral.from_int(int(self) * int(other))
