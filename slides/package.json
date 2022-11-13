@@ -11,8 +11,8 @@
     "url": "git@github.com:~naphthalene/pylesson"
   },
   "scripts": {
-    "build": "webpack -p",
-    "watch": "webpack --watch"
+    "build": "webpack build",
+    "serve": "webpack serve"
   },
   "devDependencies": {
     "@types/reveal.js": "^4.3.0",

@@ -4,7 +4,7 @@
 
 import pytest
 
-from lessons.data import (
+from homework.data import (
     Point,
     Segment,
     Square,
@@ -45,7 +45,6 @@ def segment_b(point_3_4, point_3_0):
     return Segment(point_3_4, point_3_0)
 
 # --------------------------------------------------
-
 def test_segment(segment_a, segment_b):
     assert segment_a.length == 3
     assert segment_b.length == 4

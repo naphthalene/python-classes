@@ -10,7 +10,6 @@ A function that does nothing:
 ```python
 def void_function():
     """This does nothing!"""
-    pass
 ```
 
 The "hello, world" function:
@@ -42,7 +41,7 @@ Any code indented to the same level under the function definition is
 part of the function's _body_.
 
 The standard indentation is 4 spaces, though 2, 8 and `<TAB>`
-characters is also perfectly valid.
+characters are also perfectly valid.
 
 ---
 ## Input Arguments
@@ -118,7 +117,7 @@ be any number of input arguments.
 ```python [3]
 # `sum(...)`    is a built-in function to add things
 # `print(...)`  is also a built-in function
-assert sum([1, 2, 3, 4, 5]) == 15
+sum([1, 2, 3, 4, 5])  # -> 15
 ```
 
 ___
@@ -157,9 +156,10 @@ ___
 ![Python_Scope](./img/scope.webp)
 
 ---
-## Advanced Functions
+## Factorial Example
 
-Let's look at some more complex functions and break them down.
+Let's look at some more complex functions and break them down, by
+implementing the `factorial`!
 
 ___
 ## Factorial Definition
@@ -168,13 +168,13 @@ The factorial of a natural number (non-negative integer) is defined as:
 
 <div data-markdown>
   $$ n! = n \times (n - 1) \times (n - 2) \times \dots \times 3 \times 2 \times 1 $$
-</section>
+</div>
 
 Alternatively:
 
 <div data-markdown>
   $$ n! = \prod_{i=1}^n i $$
-</section>
+</div>
 
 ___
 ## Factorial Signature
@@ -190,8 +190,6 @@ def factorial(n: int) -> int:
 ___
 ## Iterative Factorial
 
-<!-- .slide: data-transition="none none" -->
-
 ```python
 def factorial(n: int) -> int:
     """Return the factorial of the given input."""
@@ -201,15 +199,14 @@ def factorial(n: int) -> int:
     result: int = 1
     # For example when n = 4, range(1, 4 + 1) == [1, 2, 3, 4]
     for x in range(1, n + 1):
+        # a *= b is the same as a = a * b
         result *= x
     return result
 ```
 ___
 ## Iterative Factorial - Subtractive
 
-<!-- .slide: data-transition="none none" -->
-
-```python [7-10]
+```python [8-11]
 def factorial(n: int) -> int:
     """Return the factorial of the given input."""
     # Check that input is non-negative
@@ -218,6 +215,7 @@ def factorial(n: int) -> int:
     result: int = 1
     # Instead, start with n and subtract to 1
     while(n > 0):
+        # [a *= b] is the same as [a = a * b]
         result *= n
         n -= 1
     return result
@@ -226,9 +224,7 @@ def factorial(n: int) -> int:
 ___
 ## Recursive Factorial
 
-<!-- .slide: data-transition="none none" -->
-
-```python
+```python [5-10]
 def factorial(n: int) -> int:
     """Return the factorial of the given input."""
     assert n >= 0, 'undefined for negative inputs'
@@ -244,3 +240,79 @@ def factorial(n: int) -> int:
 ```
 
 Note: Pause here to experiment with recursion.
+
+---
+## Higher Order Functions
+
+A higher order function is any function that either receives another
+function as an input value, or returns a function as its return value.
+
+___
+## Wrapper Function
+
+Let's define a function that does something before and after whatever
+other function you want.
+
+```python
+from typing import Callable
+
+def logging_wrapper(func: Callable) -> Callable:
+    def _inner_function(*args, **kwargs):
+        print("Before calling func()")
+        func_return_value = func(*args, **kwargs)
+        print("After calling func()")
+        return func_return_value
+    return _inner_function
+```
+
+___
+## Wrapper Function
+
+Now, we can use it like this:
+
+```python
+# Use the greet function from before
+wrapped_greet: Callable = logging_wrapper(greet)
+wrapped_greet('wrapper')
+
+
+```
+
+---
+## Classes and their Functions
+
+Functions that are defined inside of a class are usually called methods.
+
+```python
+class FunctionContainer:
+    def __init__(self, *, value):
+        """
+        Create an instance of this class.
+
+        The *, in the arguments list means `value` 
+        must be passed as a keyword argument, and 
+        not as a positional argument.
+        """
+        self.value = value
+```
+
+```python
+container = FunctionContainer(value=123)
+```
+
+---
+## Anonymous Functions
+
+Anonymous functions are the unimportant cousins of regular
+functions.
+
+```python
+(lambda arg: arg + 1)(3)  # -> 4
+```
+
+They are useful when you don't need to reuse the function, and it is
+short enough to express in one line:
+
+```python
+filter(lambda num: num > 3, [1, 2, 3, 4, 5])  # -> [4, 5]
+```
