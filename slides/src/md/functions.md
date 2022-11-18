@@ -198,9 +198,11 @@ def factorial(n: int) -> int:
     # Define the return value accumulator
     result: int = 1
     # For example when n = 4, range(1, 4 + 1) == [1, 2, 3, 4]
-    for x in range(1, n + 1):
+    rng = range(1, n + 1)
+    for x in rng:
         # a *= b is the same as a = a * b
         result *= x
+        breakpoint()
     return result
 ```
 ___
@@ -258,9 +260,12 @@ from typing import Callable
 
 def logging_wrapper(func: Callable) -> Callable:
     def _inner_function(*args, **kwargs):
+        time1 = time.monotonic()
         print("Before calling func()")
         func_return_value = func(*args, **kwargs)
         print("After calling func()")
+        time2 = time.monotonic()
+        print(time2-time1)
         return func_return_value
     return _inner_function
 ```
