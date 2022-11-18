@@ -39,7 +39,9 @@ def reverse_string(input_string: str) -> str:
     Hint:
       help(list.pop)
     """
-    raise NotImplementedError()
+
+    return input_string[::-1]
+    
 
 
 class RomanNumeral():
