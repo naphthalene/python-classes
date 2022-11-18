@@ -13,7 +13,13 @@ def filter_even(number_list: typing.List[int]) -> typing.List[int]:
 
     e.g. filter_even([1, 2, 3, 4, 5, 6]) == [2, 4, 6]
     """
-    raise NotImplementedError()
+    even_list = []
+
+    for number in number_list :
+        if number % 2 == 0 :
+            even_list.append(number)
+    return even_list
+
 
 
 def reverse_string(input_string: str) -> str:
